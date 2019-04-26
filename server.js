@@ -21,8 +21,7 @@ mongoose
   .then(console.log('MongoDB conectado'))
   .catch(err => console.log(err));
 
-
-app.use(cors());
+app.use(cors({ origin: 'https://ybolao.herokuapp.com/' }));
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
