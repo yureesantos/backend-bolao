@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require("cors");
 const multer = require('multer');
 
 const country = require('./routes/country');
@@ -26,6 +27,8 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', '*, Content-Type, Authorization');
   next();
 });
+
+app.use(cors());
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
