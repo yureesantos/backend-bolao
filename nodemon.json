@@ -1,0 +1,9 @@
+{
+  "env": {
+    "SECRET_KEY": "!@#AquiNaoJaoAquiEProtegidoPorqueEuCrieiUmSegredoGrandePorqueONegocioDiziaQueEraFraco!@#",
+    "MONGO_USER": "yuree",
+    "MONGO_PASSWORD": "pDBkpxGQ4gh1ttfh",
+    "MONGO_DATABASE": "bolaoture",
+    "CLOUDINARY_URL": "cloudinary://643673452146514:zs4ORkrq6ssCw8xkBEzhHltrTcA@rodolphonetto"
+  }
+}
