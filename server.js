@@ -5,6 +5,8 @@ const path = require('path');
 const cors = require('cors');
 const multer = require('multer');
 
+app.use(cors());
+
 const country = require('./routes/country');
 const team = require('./routes/team');
 const player = require('./routes/player');
@@ -20,8 +22,6 @@ mongoose
   .connect(db)
   .then(console.log('MongoDB conectado'))
   .catch(err => console.log(err));
-
-app.use(cors());
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
