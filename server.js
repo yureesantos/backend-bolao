@@ -5,6 +5,8 @@ const path = require('path');
 const cors = require('cors');
 const multer = require('multer');
 
+const app = express();
+
 app.use(cors());
 
 const country = require('./routes/country');
@@ -15,7 +17,7 @@ const match = require('./routes/match');
 const bet = require('./routes/bet');
 const auth = require('./routes/auth');
 
-const app = express();
+
 const db = require('./config/keys').mongoURI;
 
 mongoose
