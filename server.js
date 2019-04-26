@@ -21,7 +21,8 @@ mongoose
   .then(console.log('MongoDB conectado'))
   .catch(err => console.log(err));
 
-app.use(cors({ origin: 'https://ybolao.herokuapp.com' }));
+app.use(cors());
+app.options('*', cors());
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://ybolao.herokuapp.com');
   res.setHeader('Access-Control-Allow-Methods', '*, GET, POST, OPTIONS, PUT');
