@@ -109,6 +109,7 @@ router.post('/add-bet', async (req, res, next) => {
 // Finanlizar as partidas e calcular o novo ranking
 const definePoints = (bet, match) => {
   let score;
+  let cravou;
   if (bet.resultA === match.resultA && bet.resultB === match.resultB) {
     score = 3;
     return score;
@@ -119,6 +120,10 @@ const definePoints = (bet, match) => {
   ) {
     score = 1;
     return score;
+  }
+  if (bet.resultA === match.resultA && bet.resultB === match.resultB) {
+    cravou = 3;
+    return cravou;
   }
   return 0;
 };
@@ -134,6 +139,17 @@ const updateUserPoints = (match, res) => {
   });
 };
 
+const updateUserCravadas = (match, res) => {
+  match.bets.forEach((bet) => {
+    const cravadas = definePoints(bet, match);
+    User.findOneAndUpdate({ _id: bet.user }, { $inc: { cravadas } }, { new: true })
+      .then(() => {})
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  });
+};
+
 router.put('/fin-match/:matchID', (req, res) => {
   const matchID = req.params.matchID;
 
@@ -142,6 +158,7 @@ router.put('/fin-match/:matchID', (req, res) => {
       Match.findOneAndUpdate({ _id: matchID }, { finished: true }, { new: true })
         .then((match) => {
           updateUserPoints(match, res);
+          updateUserCravadas(match, res);
           res.json({ msg: 'Usuarios atualizados com sucesso' });
         })
         .catch((err) => {
