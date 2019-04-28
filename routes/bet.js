@@ -109,7 +109,7 @@ router.post('/add-bet', async (req, res, next) => {
 // Finanlizar as partidas e calcular o novo ranking
 const definePoints = (bet, match) => {
   let score;
-  let cravou;
+
   if (bet.resultA === match.resultA && bet.resultB === match.resultB) {
     score = 3;
     return score;
@@ -121,6 +121,12 @@ const definePoints = (bet, match) => {
     score = 1;
     return score;
   }
+
+  return 0;
+};
+
+const defineCravou = (bet, match) => {
+  let cravou;
   if (bet.resultA === match.resultA && bet.resultB === match.resultB) {
     cravou = 1;
     return cravou;
@@ -141,7 +147,7 @@ const updateUserPoints = (match, res) => {
 
 const updateUserCravadas = (match, res) => {
   match.bets.forEach((bet) => {
-    const cravadas = definePoints(bet, match);
+    const cravadas = defineCravou(bet, match);
     User.findOneAndUpdate({ _id: bet.user }, { $inc: { cravadas } }, { new: true })
       .then(() => {})
       .catch((err) => {
