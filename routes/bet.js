@@ -179,7 +179,7 @@ router.put('/fin-match/:matchID', (req, res) => {
 // Endpoint: /ranking
 // Gerar o ranking dos usuarios por pontos
 const getRanking = async () => {
-  const users = await User.find({ points: { $gt: 0 } }, { _id: 0, username: 1, points: 1}).sort([
+  const users = await User.find({ points: { $gt: 0 } }, { _id: 0, username: 1, points: 1 }).sort([
     ['points', 'descending'],
   ]);
   return users;
