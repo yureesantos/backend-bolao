@@ -180,7 +180,7 @@ router.put('/fin-match/:matchID', (req, res) => {
 // Gerar o ranking dos usuarios por pontos
 const getRanking = async () => {
   const users = await User.find({ points: { $gt: 0 } }, { cravadas: { $gte: 0 } }, { _id: 0, username: 1, points: 1, cravadas: 0 }).sort([
-    ['points', 'cravadas', 'descending'],
+    ['points', 'descending'],
   ]);
   return users;
 };
