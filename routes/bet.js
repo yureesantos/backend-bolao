@@ -122,7 +122,7 @@ const definePoints = (bet, match) => {
     return score;
   }
   if (bet.resultA === match.resultA && bet.resultB === match.resultB) {
-    cravou = 3;
+    cravou = 1;
     return cravou;
   }
   return 0;
